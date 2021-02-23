@@ -1,0 +1,20 @@
+package edu.duke.xl350.battleship;
+
+public class InBoundsRuleChecker<T> extends PlacementRuleChecker<T>{
+
+    public InBoundsRuleChecker(PlacementRuleChecker<T> next) {
+        super(next);
+    }
+
+    @Override
+    protected boolean checkMyRule(Ship<T> theShip, Board<T> theBoard) {
+        for(Coordinate c: theShip.getCoordinates()){
+            int ShipRow = c.getRow(),shipCol = c.getCol(),
+                height = theBoard.getHeight(),width = theBoard.getWidth();
+            if( ShipRow<0 || ShipRow>=height|| shipCol<0 || shipCol>=width){
+                return false;
+            }
+        }
+        return true;
+    }
+}
